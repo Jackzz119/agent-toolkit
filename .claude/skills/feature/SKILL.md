@@ -6,6 +6,8 @@ allowed-tools: Read, Write, Edit, Bash, Glob
 
 # /feature — 功能驱动开发流程
 
+**触发策略：询问后触发** — 检测到相关场景时，先提示用户确认是否触发，等用户同意后再执行。
+
 用法：`/feature <功能名>` （例：`/feature freespin`）
 
 功能名对应 `Docs/<功能名>.md`（不区分大小写）。如果文档不存在，流程会先帮你创建它。
