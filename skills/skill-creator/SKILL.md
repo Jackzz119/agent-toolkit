@@ -1,7 +1,7 @@
 ---
 name: skill-creator
 description: Skill 主管——管理、创建、修改所有 skills，知晓当前可用 skill 列表，主动监督并按策略触发各 skill
-allowed-tools: Read, Write, Edit, Glob, Bash
+allowed-tools: Read, Glob, Bash
 ---
 
 # Skill 主管
@@ -38,11 +38,21 @@ allowed-tools: Read, Write, Edit, Glob, Bash
 - 入口精简：SKILL.md ≤ 500 行，细节放 reference.md
 - 通用优先：不写项目特定内容，保持跨项目复用（除非功能本身是项目特定的）
 
-**Step 3 — 起草内容**
+**Step 3 — 通用性检查（起草前必做）**
+
+对草稿逐条检查，发现问题立即修正后再展示给用户：
+
+- [ ] **命名**：类名/工具名是否绑定了技术域？（如 `GameLogger`、`UnityEventBus`）→ 改为通用名
+- [ ] **可变槽位**：有没有应该「由项目自定义」却被写死的值？（如运行时环境标签、Pro 标识符号）→ 改为槽位描述
+- [ ] **项目数据**：有没有把标签池、枚举值、具体路径等项目特定内容写进来？→ 移出，注明「记录在 PROJECT.md」
+
+详细规范见 `${CLAUDE_SKILL_DIR}/reference.md` — 通用性规范章节。
+
+**Step 4 — 起草内容**
 - 展示 SKILL.md 草稿给用户确认
 - 等用户批准后再写入文件
 
-**Step 4 — 写入文件**
+**Step 5 — 写入文件**
 
 ```
 .claude/skills/<skill-name>/
