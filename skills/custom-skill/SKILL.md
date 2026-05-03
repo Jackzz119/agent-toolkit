@@ -1,5 +1,5 @@
 ---
-name: skill-creator
+name: custom-skill
 description: Skill 主管——管理、创建、修改所有 skills，知晓当前可用 skill 列表，主动监督并按策略触发各 skill
 allowed-tools: Read, Glob, Bash
 ---
@@ -95,8 +95,8 @@ allowed-tools: Read, Glob, Bash
 ## 使用方式
 
 ```
-/skill-creator                    # 进入主管模式，查看当前 skill 概览
-/skill-creator create <名称>      # 创建新 skill
-/skill-creator edit <名称>        # 修改已有 skill
-/skill-creator list               # 列出所有 skill 及其描述
+/custom-skill                    # 进入主管模式，查看当前 skill 概览
+/custom-skill create <名称>      # 创建新 skill
+/custom-skill edit <名称>        # 修改已有 skill
+/custom-skill list               # 列出所有 skill 及其描述
 ```

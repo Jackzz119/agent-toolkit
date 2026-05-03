@@ -45,7 +45,7 @@ allowed-tools: Read, Edit, Bash   # 可选，预批准工具列表
 目标功能：$ARGUMENTS
 ```
 
-用户调用 `/skill-creator create bigwin` 时，`$ARGUMENTS` = `create bigwin`。
+用户调用 `/custom-skill create bigwin` 时，`$ARGUMENTS` = `create bigwin`。
 
 ### `${CLAUDE_SKILL_DIR}` — 引用同目录文件
 
@@ -90,7 +90,7 @@ allowed-tools: Read, Edit, Bash   # 可选，预批准工具列表
 
 | 类型 | 存放位置 | 示例 |
 |------|----------|------|
-| 通用 skill | `.claude/skills/` (项目内) 或 `~/.claude/skills/` (全局) | vc, skill-creator |
+| 通用 skill | `.claude/skills/` (项目内) 或 `~/.claude/skills/` (全局) | vc, custom-skill |
 | 项目特定 skill | `.claude/skills/` (项目内) | feature (含项目文档路径) |
 
 通用 skill 未来可以发布到 GitHub skill 库供复用。

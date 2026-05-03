@@ -1,10 +1,12 @@
-# Claude 工作协议
+# AI 工作协议
+
+本协议适用于任何参与本项目的 AI 助手，包括 Codex、Claude 以及其他具备文件读写能力的代理。
 
 ## 上下文准备
 
 每次对话开始时：
 1. 读取 `ai/PROJECT.md` 和 `ai/TODO.md`，将项目现状和任务列表纳入上下文
-2. 扫描 `.claude/skills/` 目录，了解当前有哪些可用 skill
+2. 扫描 `skills/` 目录，了解当前有哪些可用 skill
 3. 遇到对应场景时，**必须调用对应的 skill**，不要重新发明已有规范
 
 ### Skill 对话规范
@@ -30,10 +32,10 @@
 | **更新项目文档**（如"更新文档"、"同步文档"、"记录到文档"） | `intj` |
 | 功能开发、Feature 文档读写、Subtask 执行 | `feature` |
 | git commit、分支、PR 操作 | `vc` |
-| 创建或修改 skill 文件（SKILL.md、reference.md 等） | `skill-creator` |
+| 创建或修改 skill 文件（SKILL.md、reference.md 等） | `custom-skill` |
 | 写/改/检查 log 语句、新增功能域标签 | `logman` |
 
-**重要**：任何对 `.claude/skills/` 目录下文件的读写，都必须先触发 `skill-creator`，不得直接用 Read/Edit 工具操作。
+**重要**：任何对 `skills/` 目录下文件的读写，都必须先触发 `custom-skill`，不得绕过 skill 规范直接操作。
 
 ## Skill 系统
 
@@ -42,7 +44,7 @@
 创建新 skill 时遵循以下结构：
 
 ```
-.claude/skills/<skill-name>/
+skills/<skill-name>/
 ├── SKILL.md        # 必需：入口指令 + frontmatter，控制在 500 行以内
 ├── reference.md    # 可选：详细规范，需要时才加载
 └── examples.md     # 可选：示例
@@ -54,19 +56,19 @@
 ---
 name: skill-name
 description: 一句话描述，用于决定何时触发
-allowed-tools: Bash, Read, Edit   # 预批准工具，免去每次确认
+allowed-tools: shell, read-only-search   # 示例：具体工具名由运行环境决定
 ---
 ```
 
 **支持的动态特性：**
 - `!`shell命令`` — skill 运行前注入命令输出（如 `!git status`）
 - `$ARGUMENTS` — 接收调用时传入的参数
-- `${CLAUDE_SKILL_DIR}` — 引用 skill 目录内的文件或脚本
+- `${SKILL_DIR}` — 引用 skill 目录内的文件或脚本；如果平台使用其他变量名，应映射到同一语义
 
 **最佳实践：**
 - `SKILL.md` 只写核心指令和入口，细节拆到 `reference.md`
 - 支持文件按需加载，不增加每次运行的上下文成本
-- 通用 skill 不写项目特定内容，保持跨项目复用
+- 通用 skill 不写项目特定内容，保持跨项目、跨 AI 平台复用
 
 ## 文档维护规则
 
@@ -105,10 +107,18 @@ allowed-tools: Bash, Read, Edit   # 预批准工具，免去每次确认
 
 ## 代码修改规则
 
-**未经用户明确说"帮我改"之前，不直接修改代码。**
+**未经用户明确说"帮我改"、"写进去"、"更新文件"等授权之前，不直接修改任何文件。**
 
 分析阶段应：
 
 1. 说明要改哪里、为什么这么改
 2. 展示改动的代码片段
 3. 等用户确认后再动手
+
+实际修改文件时必须遵守：
+
+- 所有文件内容修改都必须使用能触发可见 diff/确认流程的编辑方式。
+- 修改前先说明即将修改的文件和改动意图。
+- 不得绕过用户可见 diff，静默写入、批量替换或隐藏式生成文件。
+- 如果运行环境无法弹出 diff/确认界面，必须先告知用户，并等待用户明确允许后再继续。
+- 用户中断或拒绝 diff 时，视为未授权该次修改；不得用其他方式重复写入同一改动。
