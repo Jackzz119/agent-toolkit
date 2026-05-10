@@ -1,5 +1,7 @@
 # Agent Toolkit
 
+> 最后更新：2026-05-10
+
 跨 AI 平台的 agent 工具箱：一套可复用的 skill 库 + AI 工作协议模板，供其他项目按需引入。
 
 ## 项目结构
@@ -35,6 +37,14 @@
 - **`skills/` 是唯一真源**，所有 skill 修改只在这里进行
 - **`.claude/skills/` 是本地缓存**，仅供本仓库自身的 Claude Code 会话使用，不手动改
 - 真源更新后通过 Milestone 1 的 CLI（待开发）同步到 `.claude/skills/`；本仓库也算一个"目标项目"
+
+## 功能文档
+
+详细设计沉淀在 `ai/features/`，PROJECT.md 仅作索引：
+
+| 文档 | 状态 | 说明 |
+|---|---|---|
+| [`ai/features/SKILL-SYNC-CLI.md`](features/SKILL-SYNC-CLI.md) | 需求对齐中 | Milestone 1 — Skill 双向同步 CLI（本期聚焦 Pull） |
 
 ## Brain Dump
 

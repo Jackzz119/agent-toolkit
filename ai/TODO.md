@@ -4,6 +4,8 @@
 
 目标：在任何目标项目里，一条命令就能拉取/推送 skill，与 agent-toolkit 仓库双向同步。
 
+> 设计文档：[`ai/features/SKILL-SYNC-CLI.md`](features/SKILL-SYNC-CLI.md)（本期聚焦 Pull）
+
 - [ ] 设计 CLI 命名与分发方式（`agent-toolkit` / `atk` / `npx` / 独立脚本？）
 - [ ] 确定 skill 在目标项目的落点（`.claude/skills/` vs `skills/`，按平台自动选）
 - [ ] **Pull 命令**：`atk pull <skill-name>` 从本仓库拉取指定 skill 到当前项目
