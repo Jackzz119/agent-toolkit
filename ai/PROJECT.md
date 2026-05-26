@@ -1,6 +1,6 @@
 # Agent Toolkit
 
-> 最后更新：2026-05-10
+> 最后更新：2026-05-26
 
 跨 AI 平台的 agent 工具箱：一套可复用的 skill 库 + AI 工作协议模板，供其他项目按需引入。
 
@@ -9,8 +9,9 @@
 - `agents/` — AI 平台工作协议模板
   - `claude/CLAUDE.md` — Claude Code 平台版本（用 `.claude/skills/`、`${CLAUDE_SKILL_DIR}`）
   - `codex/AGENTS.md` — 平台中立版本（用 `skills/`、`${SKILL_DIR}`），适用于 Codex 等
-- `skills/` — 主 skill 集，每个 skill 一个目录，含 `SKILL.md`（必需）和按需的 `reference.md` / `examples.md`
-- `other-skills/` — 备用/迁移区（当前含 blender-create，与 `skills/` 下同名版本待整合）
+- `skills/` — 主 skill 集，按**包**组织：`skills/_common/`（默认包）、`skills/<pack>/`（领域包，如 `blender/`）
+- `bin/atk.mjs` + `lib/` — `atk` CLI 实现，详见 [`ai/features/SKILL-SYNC-CLI.md`](features/SKILL-SYNC-CLI.md)
+- `other-skills/` — 草稿 / 实验区（CLI 暂不暴露）
 - `ai/` — 本仓库自身的 PROJECT.md / TODO.md 工作区
 
 ## Skill 清单

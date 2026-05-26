@@ -4,22 +4,25 @@
 
 目标：在任何目标项目里，一条命令就能拉取/推送 skill，与 agent-toolkit 仓库双向同步。
 
-> 设计文档：[`ai/features/SKILL-SYNC-CLI.md`](features/SKILL-SYNC-CLI.md)（本期聚焦 Pull）
+> 设计文档：[`ai/features/SKILL-SYNC-CLI.md`](features/SKILL-SYNC-CLI.md)（本期聚焦 Pull · common 包）
 
-- [ ] 设计 CLI 命名与分发方式（`agent-toolkit` / `atk` / `npx` / 独立脚本？）
-- [ ] 确定 skill 在目标项目的落点（`.claude/skills/` vs `skills/`，按平台自动选）
-- [ ] **Pull 命令**：`atk pull <skill-name>` 从本仓库拉取指定 skill 到当前项目
-  - [ ] 支持 `atk pull --all` 批量拉
-  - [ ] 支持 `atk list` 查看可用 skill 清单
-  - [ ] 拉取时自动选 CLAUDE / AGENTS 协议模板（按目标项目类型）
-  - [ ] 处理目标已存在同名 skill 的冲突（覆盖 / 跳过 / diff 三种模式）
-- [ ] **Push 命令**：`atk push <skill-name>` 把目标项目里改过的 skill 推回本仓库
-  - [ ] 推送前 diff 预览，需用户确认
-  - [ ] 自动新建分支或在 `other-skills/` 暂存，避免污染主线
-  - [ ] 校验 SKILL.md frontmatter 合法性
-- [ ] **版本机制**：每个 skill 加版本号 / hash，pull 时能判断是否需要更新
-- [ ] **配置文件**：目标项目放一个 `.agent-toolkit.json` 记录已引入的 skill 和版本
-- [ ] 文档：在 README 写清安装、pull、push、update 完整流程
+**需求对齐已完成 ✅**：6 个决策点全部锁定（CLI=Node 脚本 + npx github、落点默认 `.claude/skills/`、common 包 = 全部 `skills/`、pull 已存在报错、版本双轨）。
+
+Subtask 进度（详见 Feature 文档）：
+
+- [x] **ST-1**：搭骨架 `package.json` + `bin/atk.mjs`，实现 `atk list`
+- [x] **ST-2**：实现 `atk pull`（common 包主路径，交互菜单 u/s/q）
+- [x] **ST-3**：`.agent-toolkit.json` + per-skill 版本 + 4 情景智能菜单（contentHash 驱动）+ 文件夹分包（`skills/_common/`、`skills/<pack>/`）
+- [ ] **ST-4**：非交互 flag——`--dest` / `--mode` / `--pack`
+- [ ] **ST-5**：`atk update` + `atk diff` 独立命令，含孤儿 entry 清理
+- [ ] **ST-6**：README + 跨平台冒烟 + 本仓库 dogfood
+
+后续（非本期）：
+
+- [ ] `atk pull <name>` 单个拉
+- [ ] `atk pull --pack <xxx>` 其他包
+- [ ] `atk pull --from other` 拉 `other-skills/`
+- [ ] Push 命令（推回主仓库），含 diff 预览 / 暂存分支 / frontmatter 校验
 
 ## Phase 2 — 仓库整理
 
@@ -45,5 +48,6 @@
 
 ## Done
 
+- [x] Milestone 1 需求对齐：6 个决策点拍板（2026-05-17）
 - [x] 重命名 skill creator，泛化 AI 协议（commit 3233c46）
 - [x] 为 codex 适配所有 skill（commit b10e317）
