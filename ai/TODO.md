@@ -1,5 +1,29 @@
 # TODO
 
+## 发版策略（npm publish）
+
+> 设计文档：[`ai/features/NPM-PUBLISH.md`](features/NPM-PUBLISH.md)
+> 触发条件：M1 完成 + M2 品牌敲定
+
+- [ ] `npm view agent-toolkit` 查名字可用性
+- [ ] 补全 package.json + 写 LICENSE
+- [ ] 编写 README.md
+- [ ] `npm pack --dry-run` 验证打包内容
+- [ ] 正式 `npm publish` + GitHub Release
+
+## Milestone 2 — ATK Server 社区平台（规划中）
+
+> 设计文档：[`ai/features/ATK-SERVER.md`](features/ATK-SERVER.md)
+> 状态：需求对齐中，等 8 个决策点拍板后开工
+
+把 agent-toolkit 升级为 Claude/Codex skill 社区平台：账户 / Web UI / REST API / CLI 改造（保留 git 模式作 fallback）。
+
+- [ ] 拍板 8 个决策点（定位 / 品牌 / 域名 / 开源 / 商业化 / 法律 / 节奏 / git 模式）
+- [ ] Phase 1 — MVP（API + Web 最小页面 + CLI 适配 + 部署）
+- [ ] Phase 2 — 社区互动（评论 / star / 关注 / changelog / 全局 skill）
+- [ ] Phase 3 — 规模化（S3 / CDN / 团队账户 / 计费）
+- [ ] Phase 4 — 生态延展（IDE 插件 / Codex 适配 / 第三方 API）
+
 ## Milestone 1 — Skill 双向同步 CLI（最高优先级）
 
 目标：在任何目标项目里，一条命令就能拉取/推送 skill，与 agent-toolkit 仓库双向同步。

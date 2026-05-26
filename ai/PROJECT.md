@@ -45,7 +45,9 @@
 
 | 文档 | 状态 | 说明 |
 |---|---|---|
-| [`ai/features/SKILL-SYNC-CLI.md`](features/SKILL-SYNC-CLI.md) | 需求对齐中 | Milestone 1 — Skill 双向同步 CLI（本期聚焦 Pull） |
+| [`ai/features/SKILL-SYNC-CLI.md`](features/SKILL-SYNC-CLI.md) | 50% (3/6 ST) | Milestone 1 — Skill 双向同步 CLI（本地 git-based） |
+| [`ai/features/ATK-SERVER.md`](features/ATK-SERVER.md) | 需求对齐中 | Milestone 2 — ATK Server 社区平台（账户 / Web / REST API） |
+| [`ai/features/NPM-PUBLISH.md`](features/NPM-PUBLISH.md) | 策略已定，待执行 | npm 发布策略与流程（等 M2 品牌敲定后启动） |
 
 ## Brain Dump
 
